@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/controller/LoginController.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/model/Product.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/controller/CategoryController.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/ProductServiceImpl.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/contact.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/model/User.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/UserDAO.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/detail.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/Impl/CategoryDAOImpl.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/Impl/ProductDaoImpl.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/cart.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/ProductDao.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/CategoryService.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/ProductService.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/UserService.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/login.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/util/DBConnectionUtil.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/util/DBUtil.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/CategoryDAO.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/checkout.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/model/Cart.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/impl/UserServiceImpl.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/forgot.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/controller/ProductController.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/index.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/sign-in.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/shop.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/dao/Impl/UserDAOImpl.java</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/reset-password.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/web/sign-up.jsp</file>
+            <file>file:/C:/Users/GNG/Documents/NetBeansProjects/QuickBucket/src/java/com/example/service/impl/CategoryServiceImpl.java</file>
+        </group>
+    </open-files>
+</project-private>
