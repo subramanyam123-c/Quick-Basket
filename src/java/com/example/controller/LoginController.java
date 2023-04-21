@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/sign-in")
@@ -17,17 +18,21 @@ public class LoginController extends HttpServlet {
     private UserServiceImpl userService;
 
     @Override
+
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         try {
             userService = new UserServiceImpl();
-           
+
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
 
         if (userService.login(email, password) != null) {
             // successful login, redirect to home page
