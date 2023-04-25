@@ -15,16 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tickets")
-public class Ticket {
+@Table(name = "stores")
+public class Store {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private String email;
-	private String description;
-	private String solution;
-	private String isResolved;
+	private String name;
+	private String address;
+	private String contact;
 	
 
 }
