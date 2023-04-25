@@ -1,59 +1,30 @@
-package com.example.model;
+package com.qba.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "tickets")
 public class Ticket {
-    private int ticketId;
-    private int customerId;
-    private int storeId;
-    private String issue;
-    private String status;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long Id;
+	private String email;
+	private String description;
+	private String solution;
+	private String isResolved;
+	
 
-    public Ticket(int ticketId, int customerId, int storeId, String issue, String status) {
-        this.ticketId = ticketId;
-        this.customerId = customerId;
-        this.storeId = storeId;
-        this.issue = issue;
-        this.status = status;
-    }
-
-    // Getters and setters
-
-    public int getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    public int getstoreId() {
-        return storeId;
-    }
-
-    public void setShopId(int storeId) {
-        this.storeId = storeId;
-    }
-
-    public String getIssue() {
-        return issue;
-    }
-
-    public void setIssue(String issue) {
-        this.issue = issue;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
