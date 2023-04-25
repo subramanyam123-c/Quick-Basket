@@ -7,6 +7,7 @@ import com.qba.app.model.User;
 
 public interface UserService {
 
+<<<<<<< Subbu_QuickBasket
 	User findUser(String email);
 
 	User findUserByUsername(String username);
@@ -25,4 +26,9 @@ public interface UserService {
 
 	void saveTicket(Ticket ticket);
 
+=======
+    public User login(String email, String password);
+
+    public void register(User user);
+>>>>>>> main
 }
