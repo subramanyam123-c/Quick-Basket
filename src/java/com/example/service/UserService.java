@@ -1,8 +1,28 @@
-package com.example.service;
+package com.qba.app.service;
 
-import com.example.model.User;
+import java.util.List;
+
+import com.qba.app.model.Ticket;
+import com.qba.app.model.User;
 
 public interface UserService {
-    public User login(String email, String password);
-    public void register(User user);
+
+	User findUser(String email);
+
+	User findUserByUsername(String username);
+
+	int saveUser(User user);
+
+	User authenticateUser(User user);
+
+	int validatePassword(User user, String securityQuestion, String securityAnswer);
+
+	void saveNewPassword(User user);
+
+	void deleteUser(Long id);
+
+	List<User> getAllUnApprovedUsers();
+
+	void saveTicket(Ticket ticket);
+
 }
