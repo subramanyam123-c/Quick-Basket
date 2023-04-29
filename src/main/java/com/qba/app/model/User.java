@@ -15,13 +15,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "reviews")
-public class Review {
+@Table(name = "users", uniqueConstraints={@UniqueConstraint(columnNames = {"email"})})
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	private String email;
-	private String type;
-	private String description;
+	private String username;
+	private String password;
+	private String firstname;
+	private String usertype;
+	private String lastname;
+	private String age;
+	private String mobileNumber;
+	private String doorNo;
+	private String street;
+	private String city;
+	private String zipCode;
+	private String isApproved;
+	private String securityQuestion;
+	private String securityAnswer;
+	
+
 }
