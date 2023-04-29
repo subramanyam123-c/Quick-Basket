@@ -119,13 +119,10 @@ public class QuickBasketApplicationController {
 				useremail=userModel.getEmail();
 				messages.add(useremail);
 				request.getSession().setAttribute("MY_SESSION_MESSAGES", messages);
-				if(userModel.getIsApproved().equals("1")) {
+			
 				return "redirect:/user";
-				}
-				else {
-					model.addAttribute("errormsg", "Your Details are not yet approved by Admin");
-					return "home/error";
-				}
+				
+				
 			}
 			else {
 				username=userModel.getEmail().split("@")[0].toString().toUpperCase();
