@@ -25,36 +25,4 @@ public class Request {
 	private String category;
 	private String itemName;
 	private String isApproved;
-	public Long getId() {
-		return Id;
-	}
-	public void setId(Long id) {
-		Id = id;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getItemName() {
-		return itemName;
-	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-	public String getIsApproved() {
-		return isApproved;
-	}
-	public void setIsApproved(String isApproved) {
-		this.isApproved = isApproved;
-	}
-	
-
 }
