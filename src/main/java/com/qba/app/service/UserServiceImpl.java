@@ -239,7 +239,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Object getAllOrders() {
 		// TODO Auto-generated method stub
+
 		System.out.println(orderRepo.findAll().get(0));
+
 		return orderRepo.findAll();
 	}
 

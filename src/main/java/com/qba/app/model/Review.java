@@ -24,6 +24,4 @@ public class Review {
 	private String email;
 	private String type;
 	private String description;
-	
-
 }
