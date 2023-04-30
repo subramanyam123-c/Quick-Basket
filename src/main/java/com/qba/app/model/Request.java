@@ -25,6 +25,4 @@ public class Request {
 	private String category;
 	private String itemName;
 	private String isApproved;
-	
-
 }

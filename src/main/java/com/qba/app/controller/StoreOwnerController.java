@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.qba.app.model.Category;
 import com.qba.app.model.Item;
+import com.qba.app.model.Order;
 import com.qba.app.model.Request;
 import com.qba.app.model.Store;
 import com.qba.app.model.Ticket;
@@ -52,6 +53,9 @@ public class StoreOwnerController {
 		}
         model.addAttribute("sessionMessages", messages);
         User userdata = userService.findUser(messages.get(0));
+        List<Item> items =storeOwnerService.getAllItems();
+        
+        model.addAttribute("items", items);
 		return "storeowner/welcomeowner";
 	}
 	
@@ -103,7 +107,7 @@ public class StoreOwnerController {
 		}
 		User userdata = userService.findUser(messages.get(0));
 		storeOwnerService.saveStore(store);
-		return "redirect:/storeowner";
+		return "redirect:/stores";
 	}
 	
 	@PostMapping("/deleteStore/{id}")
@@ -111,7 +115,7 @@ public class StoreOwnerController {
 	{
 		storeOwnerService.deleteStore(id);
 		
-		return "redirect:/storeowner";
+		return "redirect:/stores";
 	}
 	
 	@GetMapping("/categories")
@@ -161,7 +165,7 @@ public class StoreOwnerController {
 		}
 		User userdata = userService.findUser(messages.get(0));
 		storeOwnerService.saveCategory(category);
-		return "redirect:/storeowner";
+		return "redirect:/categories";
 	}
 	
 	@GetMapping("/editCategory/{id}")
@@ -199,7 +203,7 @@ public class StoreOwnerController {
 		storeOwnerService.updateCategory(category);
 		
 		
-		return "redirect:/storeowner";
+		return "redirect:/categories";
 	}
 	
 	
@@ -208,7 +212,7 @@ public class StoreOwnerController {
 	{
 		storeOwnerService.deleteCategory(id);
 		
-		return "storeowner/categories";
+		return "redirect:/categories";
 	}
 	
 	@GetMapping("/items")
@@ -268,7 +272,7 @@ public class StoreOwnerController {
 		}
 		item.setStatus("1");
 		storeOwnerService.saveItem(item);
-		return "redirect:/storeowner";
+		return "redirect:/items";
 	}
 	
 	@GetMapping("/editItem/{id}")
@@ -288,6 +292,8 @@ public class StoreOwnerController {
 		model.addAttribute("item", item);
 		
 		model.addAttribute("role", userdata.getUsertype());
+		 List<Category> categories = storeOwnerService.getAllCategories();
+	        model.addAttribute("categories", categories);
 
 		return "storeowner/edititem";
 	}
@@ -313,7 +319,7 @@ public class StoreOwnerController {
 		storeOwnerService.updateItem(item);
 		
 		
-		return "redirect:/storeowner";
+		return "redirect:/items";
 	}
 	
 	@PostMapping("/deleteItem/{id}")
@@ -321,7 +327,7 @@ public class StoreOwnerController {
 	{
 		storeOwnerService.deleteItem(id);
 		
-		return "storeowner/items";
+		return "redirect:/items";
 	}
 	
 	@GetMapping("/requests")
@@ -346,7 +352,7 @@ public class StoreOwnerController {
 	{
 		adminService.approveRequest(id);
 		
-		return "redirect:/admin";
+		return "redirect:/storeowner";
 	}
 	
 	
@@ -356,7 +362,7 @@ public class StoreOwnerController {
 	{
 		adminService.rejectRequest(id);
 		
-		return "redirect:/admin";
+		return "redirect:/storeowner";
 	}
 	
 	@GetMapping("/orderstatus")
@@ -372,6 +378,12 @@ public class StoreOwnerController {
         model.addAttribute("sessionMessages", messages);
         User userdata = userService.findUser(messages.get(0));
 
+        List<Order> orders = userService.getAllOrders();
+        if(orders.size() == 0) {
+        	model.addAttribute("info", "No Orders Now");
+        }else {
+        	model.addAttribute("info", "");
+        }
 		model.addAttribute("orders", userService.getAllOrders());
 
 		model.addAttribute("role", userdata.getUsertype());
@@ -385,5 +397,47 @@ public class StoreOwnerController {
 		storeOwnerService.updateOrderStatus(status, id);
 		System.out.println(status);
 		return "redirect:/storeowner";
+	}
+	
+	@PostMapping("/searchOnwerItems")
+	public String searchOnwerItems(Model model, HttpSession session, @RequestParam("searchKey") String searchKey ) {
+		@SuppressWarnings("unchecked")
+        List<String> messages = (List<String>) session.getAttribute("MY_SESSION_MESSAGES");
+
+		if(messages == null) {
+			model.addAttribute("errormsg", "Session Expired. Please Login Again");
+			return "home/error";
+		}
+		User userdata = userService.findUser(messages.get(0));
+        model.addAttribute("sessionMessages", messages);
+        List<Item> items = userService.searchItems(searchKey, userdata.getEmail());
+        model.addAttribute("items", items);
+        model.addAttribute("role", userdata.getUsertype());
+		return "storeowner/welcomeowner";
+	}
+	
+
+	@GetMapping("/generate")
+	public String generate( Model model)
+	{
+		List<Category> categories = storeOwnerService.getAllCategories();
+		
+		List<Item> items = storeOwnerService.getAllItems();
+		
+		List<Order> orders = storeOwnerService.getOrders();
+		
+		List<User> users = userService.getAllUsers();
+		
+		List<Store> stores = storeOwnerService.getAllStores();
+		
+		model.addAttribute("categories", String.valueOf(categories.size()));
+		
+		model.addAttribute("items", String.valueOf(items.size()));
+		model.addAttribute("orders", String.valueOf(orders.size()));
+		model.addAttribute("users", String.valueOf(users.size()));
+		model.addAttribute("stores", String.valueOf(stores.size()));
+		
+		
+		return "storeowner/generate";
 	}
 }
