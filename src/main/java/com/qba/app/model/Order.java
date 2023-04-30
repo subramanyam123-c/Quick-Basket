@@ -34,5 +34,4 @@ public class Order {
 	private String cardNumber;
 	private String cvv;
 	private String status;
-
 }
