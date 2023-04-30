@@ -21,8 +21,10 @@ import com.qba.app.model.User;
 @Repository
 public interface RewardRepo extends JpaRepository<Reward, Long>{
 
-	@Query( value = "select * from reward where email = :email", nativeQuery = true)
+	@Query( value = "select * from rewards where email = :email", nativeQuery = true)
 	List<Reward> findRewardByEmail(@Param("email") String email);
+
+	
 
 
 
