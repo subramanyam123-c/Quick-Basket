@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.qba.app.dao.CartRepo;
 import com.qba.app.dao.ItemRepo;
 import com.qba.app.dao.OrderRepo;
+import com.qba.app.dao.RecommendationRepo;
 import com.qba.app.dao.RequestRepo;
 import com.qba.app.dao.ReviewRepo;
 import com.qba.app.dao.RewardRepo;
@@ -17,6 +18,7 @@ import com.qba.app.dao.UserRepo;
 import com.qba.app.model.Cart;
 import com.qba.app.model.Item;
 import com.qba.app.model.Order;
+import com.qba.app.model.Recommendation;
 import com.qba.app.model.Request;
 import com.qba.app.model.Review;
 import com.qba.app.model.Reward;
@@ -50,6 +52,10 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private RewardRepo rewardRepo;
 	
+	@Autowired
+	private RecommendationRepo recommendationRepo;
+
+	
 	public int saveUser(User user) {
 		userRepo.save(user);
 		if(userRepo.save(user)!=null) {
@@ -66,7 +72,7 @@ public class UserServiceImpl implements UserService{
 		if(user.size() == 0) {
 			return null;
 		}
-		List<User> veifiedUser = user.stream().filter(n -> n.getEmail().equals(email)).collect(Collectors.toList());
+		List<User> veifiedUser = user.stream().filter(n -> n.getEmail().equals(email) || n.getUsername().equals(email)).collect(Collectors.toList());
 		if(veifiedUser.size() > 0) {
 			return veifiedUser.get(0);
 		}
@@ -89,6 +95,8 @@ public class UserServiceImpl implements UserService{
 		List<User> veifiedUser = users.stream().filter(n -> (n.getEmail().equals(user.getEmail()) || n.getUsername().equals(user.getEmail())) && n.getPassword().equals(user.getPassword())).collect(Collectors.toList());
 		
 		if(veifiedUser.size() ==1) {
+			
+			
 			return veifiedUser.get(0);
 		}
 		else {
@@ -148,7 +156,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getAllUnApprovedUsers() {
 		// TODO Auto-generated method stub
-		return userRepo.findAll().stream().filter(u -> u.getIsApproved().equals("0")).collect(Collectors.toList());
+		return userRepo.findAll().stream().filter(u -> u.getIsApproved().equals("0") && u.getUsertype().equals("storeowner")).collect(Collectors.toList());
 	}
 
 	@Override
@@ -212,12 +220,28 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	
-	public List<Item> searchItems(String searchKey) {
+	public List<Item> searchItems(String searchKey, String email) {
 		// TODO Auto-generated method stub
 		List<Item> items = itemRepo.findAll();
 		List<Item> searchedItems = items.stream().filter(item -> item.getName().contains(searchKey) ||
 				item.getCategory().equals(searchKey) || item.getDescription().contains(searchKey) || item.getZipCode().equals(searchKey)
 				).collect(Collectors.toList());
+		
+		searchedItems.forEach(item -> {
+			Recommendation r = new Recommendation();
+			
+			r.setCategory(item.getCategory());
+			r.setCustomerMail(email);
+			r.setDescription(item.getDescription());
+			r.setDiscount(item.getDiscount());
+			r.setItemPhoto(item.getItemPhoto());
+			r.setName(item.getName());
+			r.setPrice(item.getPrice());
+			r.setQuantity(item.getQuantity());
+			r.setZipCode(item.getZipCode());
+			recommendationRepo.save(r);
+		});
+		
 		return searchedItems;
 		
 	}
@@ -237,12 +261,45 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Object getAllOrders() {
+	public List<Order> getAllOrders() {
 		// TODO Auto-generated method stub
-
 		System.out.println(orderRepo.findAll().get(0));
-
 		return orderRepo.findAll();
 	}
+	
+
+	@Override
+	public List<Recommendation> getAllRecommendations(String email) {
+		// TODO Auto-generated method stub
+		return recommendationRepo.findRecommendationsByEmail(email);
+	}
+
+	@Override
+	public String getRewards(String email) {
+		
+		List<Reward> rewards = rewardRepo.findRewardByEmail(email);
+		
+		int total = 0;
+		
+		for(int i=0;i<rewards.size();i++) {
+			
+			total = total + Integer.parseInt(rewards.get(i).getPoints());
+		}
+		return String.valueOf(total);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return userRepo.findAll();
+	}
+
+	@Override
+	public Reward getReward(String email) {
+		// TODO Auto-generated method stub
+		return rewardRepo.findOneRewardByEmail(email);
+	}
+	
+	
 
 }
