@@ -8,7 +8,7 @@ options. Our hope is that this application will make it easier and more affordab
 same time.
 
 Description
-                                                                     QUICK BASKET WEB APPLICATION
+                                                                    # QUICK BASKET WEB APPLICATION
 Quick Basket is a web application designed to help users find items they need in their area based on their zip code. It enables users to quickly search for items that
 they want to purchase from stores near them. The application searches for stores based on the user's zip code, and then displays the available items along with the 
 store information. Users can then view detailed information about each store, including its address, phone number, and opening hours.
@@ -25,7 +25,7 @@ save time by making payment ahead of time, and share their experiences with othe
 
 Navigating in Repository:
 
-Main Application Class         : https://github.com/subramanyam123-c/Quick-Basket/blob/main/src/main/java/com/qba/app/QuickBasketApplication.java
+Main Application Class         : [Link](https://github.com/subramanyam123-c/Quick-Basket/blob/main/src/main/java/com/qba/app/QuickBasketApplication.java)
 Controller classes             : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/controller
 Model  Classes                 : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/model
 Service Classes                : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/service
