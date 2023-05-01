@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.qba.app.model.Cart;
 import com.qba.app.model.Category;
@@ -226,9 +228,25 @@ public class UserController {
 			finalPrice = finalPrice + Integer.parseInt(carts.get(i).getTotalCost());
 		}
 		finalPrice = finalPrice - Integer.parseInt(rewards);
+		if(finalPrice > 0) {
+			model.addAttribute("finalprice", finalPrice);
+		}
+		else {
+			model.addAttribute("finalprice", "0");
+		}
 		model.addAttribute("rewards", rewards);
-		model.addAttribute("finalprice", finalPrice);
-		model.addAttribute("cartsize", carts.size());
+		
+		int cartSize = carts.size();
+		if(cartSize > 0) {
+			model.addAttribute("flag", 1);
+		}
+		else {
+			model.addAttribute("flag", 0);
+		}
+		
+		
+		model.addAttribute("cartsize", cartSize);
+		System.out.println(carts.size()+"------");
 		model.addAttribute("role", userdata.getUsertype());
 		
 		return "user/cart";
@@ -313,12 +331,30 @@ public class UserController {
 		order.setFinalBill(String.valueOf(finalCost));
 		order.setStatus("ordered");
 		
-		Reward reward = new Reward();
 		
-		reward.setEmail(userdata.getEmail());
-		reward.setPoints(String.valueOf(finalCost/2));
 		
-		userService.saveOrder(order, userdata.getEmail(), reward);
+		Reward reward = userService.getReward(userdata.getEmail());
+		Reward r = new Reward();
+		if(reward == null) {
+			r.setEmail(userdata.getEmail());
+			r.setPoints(String.valueOf(finalCost/2));
+			userService.saveOrder(order, userdata.getEmail(), r);
+
+		}else {
+			if(finalCost > Integer.parseInt(reward.getPoints()) +  (finalCost/2)) {
+				reward.setPoints("0");
+				order.setFinalBill(String.valueOf(finalCost - Integer.parseInt(reward.getPoints()) +  (finalCost/2)));
+			}
+			else {
+			reward.setPoints(String.valueOf((Integer.parseInt(reward.getPoints()) +  (finalCost/2) - finalCost)));
+			}
+			userService.saveOrder(order, userdata.getEmail(), reward);
+
+		}
+		
+		
+		
+		userService.saveOrder(order, userdata.getEmail(), r);
 		
 		
 		
@@ -401,5 +437,6 @@ public class UserController {
         
 		return "user/recommendations";
 	}
+
 	
 }
