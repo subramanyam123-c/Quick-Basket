@@ -228,6 +228,9 @@ public class UserServiceImpl implements UserService{
 				).collect(Collectors.toList());
 		
 		searchedItems.forEach(item -> {
+			
+			List<Recommendation> rr = recommendationRepo.findAll().stream().filter(r -> r.getName().equals(item.getName())).collect(Collectors.toList());
+			if(rr.size() == 0) {
 			Recommendation r = new Recommendation();
 			
 			r.setCategory(item.getCategory());
@@ -240,6 +243,7 @@ public class UserServiceImpl implements UserService{
 			r.setQuantity(item.getQuantity());
 			r.setZipCode(item.getZipCode());
 			recommendationRepo.save(r);
+			}
 		});
 		
 		return searchedItems;

@@ -1,16 +1,24 @@
 package com.qba.app.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.qba.app.dao.CategoryRepo;
 import com.qba.app.dao.ItemRepo;
 import com.qba.app.dao.OrderRepo;
+import com.qba.app.dao.RecommendationRepo;
 import com.qba.app.dao.StoreRepo;
 import com.qba.app.model.Category;
 import com.qba.app.model.Item;
+import com.qba.app.model.Order;
+import com.qba.app.model.Recommendation;
 import com.qba.app.model.Store;
 
 @Service
@@ -27,6 +35,7 @@ public class StoreOwnerServiceImpl implements StoreOwnerService{
 	
 	@Autowired
 	private OrderRepo orderRepo;
+	
 
 
 	@Override
@@ -118,5 +127,25 @@ public class StoreOwnerServiceImpl implements StoreOwnerService{
 		orderRepo.updateOrderStatus(status, id);
 		
 	}
+	
+	public List<Item> searchItems(String searchKey) {
+		// TODO Auto-generated method stub
+		List<Item> items = itemRepo.findAll();
+		List<Item> searchedItems = items.stream().filter(item -> item.getName().contains(searchKey) ||
+				item.getCategory().equals(searchKey) || item.getDescription().contains(searchKey) || item.getZipCode().equals(searchKey)
+				).collect(Collectors.toList());
+		
+		
+		return searchedItems;
+		
+	}
+
+	@Override
+	public List<Order> getOrders() {
+		// TODO Auto-generated method stub
+		return orderRepo.findAll();
+	}
+	
+	
 
 }
