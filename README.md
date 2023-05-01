@@ -25,7 +25,7 @@ save time by making payment ahead of time, and share their experiences with othe
 
 Navigating in Repository:
 
-Main Application Class         : [Link](https://github.com/subramanyam123-c/Quick-Basket/blob/main/src/main/java/com/qba/app/QuickBasketApplication.java)
+Main Application Class         : [Link](https://github.com/subramanyam123-c/Quick-Basket/blob/main/src/main/java/com/qba/app/QuickBasketApplication.java) \n
 Controller classes             : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/controller
 Model  Classes                 : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/model
 Service Classes                : https://github.com/subramanyam123-c/Quick-Basket/tree/main/src/main/java/com/qba/app/service
