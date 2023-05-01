@@ -5,6 +5,7 @@ import java.util.List;
 import com.qba.app.model.Cart;
 import com.qba.app.model.Item;
 import com.qba.app.model.Order;
+import com.qba.app.model.Recommendation;
 import com.qba.app.model.Request;
 import com.qba.app.model.Review;
 import com.qba.app.model.Reward;
@@ -45,13 +46,21 @@ public interface UserService {
 
 	void saveOrder(Order order, String email, Reward reward);
 
-	List<Item> searchItems(String searchKey);
+	List<Item> searchItems(String searchKey, String email);
 
 	List<Item> filterItems(String category);
 
 	Object getUserOrders(String email);
 
-	Object getAllOrders();
+	List<Order> getAllOrders();
+
+	List<Recommendation> getAllRecommendations(String email);
+
+	String getRewards(String email);
+
+	List<User> getAllUsers();
+
+	Reward getReward(String email);
 
 
 }
